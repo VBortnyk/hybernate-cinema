@@ -51,6 +51,7 @@ public class Movie {
         return "Movie{"
                 + "id=" + id
                 + ", title='" + title + '\''
-                + ", description='" + description + '\'' + '}';
+                + ", description='" + description + '\''
+                + '}';
     }
 }
