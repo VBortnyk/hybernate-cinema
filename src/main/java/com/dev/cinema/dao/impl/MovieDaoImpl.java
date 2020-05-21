@@ -13,7 +13,6 @@ import org.hibernate.Transaction;
 
 @Dao
 public class MovieDaoImpl implements MovieDao {
-    private static final Logger logger = Logger.getLogger(MovieDaoImpl.class);
     @Override
     public Movie add(Movie movie) {
         Transaction transaction = null;
