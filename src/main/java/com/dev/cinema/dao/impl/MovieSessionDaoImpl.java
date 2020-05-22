@@ -21,7 +21,7 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
             session = HibernateUtil.getSessionFactory().openSession();
             Query query = session.createQuery(
                     "FROM MovieSession WHERE  showTime > :start  AND showTime < :end");
-            query.setParameter("start", LocalDateTime.now());
+            query.setParameter("start", date.atStartOfDay());
             query.setParameter("end", date.atStartOfDay().plusDays(1).minusSeconds(1));
             return query.getResultList();
         } catch (Exception ex) {

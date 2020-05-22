@@ -46,7 +46,7 @@ public class Main {
         MovieSession movieSession2 = new MovieSession();
         movieSession2.setMovie(matrix2);
         movieSession2.setShowTime(LocalDateTime
-                .of(LocalDate.of(2020, 05, 23), LocalTime.of(12, 30)));
+                .of(LocalDate.of(2020, 05, 22), LocalTime.of(12, 30)));
         movieSession2.setCinemaHall(cinemaHall2);
         movieSessionService.add(movieSession2);
 
@@ -60,7 +60,7 @@ public class Main {
         movieService.getALl().forEach(System.out::println);
         cinemaHallService.getAll().forEach((System.out::println));
         movieSessionService
-                .findAvailableSessions(1L, LocalDate.of(2020, 05, 24))
+                .findAvailableSessions(1L, LocalDate.of(2020, 05, 23))
                 .forEach(System.out::println);
     }
 }
