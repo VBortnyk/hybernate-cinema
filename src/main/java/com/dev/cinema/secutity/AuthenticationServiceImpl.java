@@ -11,13 +11,14 @@ import com.dev.cinema.util.HashUtil;
 public class AuthenticationServiceImpl implements AuthenticationService {
     @Inject
     private UserService userService;
+
     @Override
     public User login(String email, String password) throws AuthenticationException {
         User user = userService.findByEmail(email);
         if (user.getPassword().equals(HashUtil.hashPassword(password, user.getSalt()))) {
             return user;
         }
-            throw new AuthenticationException("Incorrect email or password");
+        throw new AuthenticationException("Incorrect email or password");
     }
 
     @Override

@@ -3,22 +3,11 @@ package com.dev.cinema;
 import com.dev.cinema.exceptions.AuthenticationException;
 import com.dev.cinema.exceptions.DataProcessingException;
 import com.dev.cinema.lib.Injector;
-import com.dev.cinema.model.CinemaHall;
-import com.dev.cinema.model.Movie;
-import com.dev.cinema.model.MovieSession;
 import com.dev.cinema.model.User;
 import com.dev.cinema.secutity.AuthenticationService;
-import com.dev.cinema.service.interfaces.CinemaHallService;
-import com.dev.cinema.service.interfaces.MovieService;
-import com.dev.cinema.service.interfaces.MovieSessionService;
 import com.dev.cinema.service.interfaces.UserService;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-
-import javax.xml.crypto.Data;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class Main {
     private static final Injector injector = Injector.getInstance("com.dev.cinema");
@@ -35,9 +24,10 @@ public class Main {
         login("mail@gmail.com", "password");
 
     }
+
     public static void login(String email, String password) {
         try {
-            authenticationService.login(email, password) ;
+            authenticationService.login(email, password);
         } catch (DataProcessingException e) {
             logger.warn("Nonexistent email input");
         } catch (AuthenticationException e) {
