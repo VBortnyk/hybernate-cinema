@@ -9,15 +9,18 @@ import com.dev.cinema.service.interfaces.UserService;
 @Service
 public class UserServiceImpl implements UserService {
     @Inject
+
     private UserDao userDao;
 
     @Override
     public User add(User user) {
         return userDao.add(user);
+
     }
 
     @Override
     public User findByEmail(String email) {
+
         return userDao.findByEmail(email).get();
     }
 }
