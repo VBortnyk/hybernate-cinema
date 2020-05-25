@@ -15,9 +15,7 @@ import org.hibernate.query.Query;
 public class MovieSessionDaoImpl implements MovieSessionDao {
     @Override
     public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {
-        Session session = null;
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query query = session.createQuery(
                     "FROM MovieSession WHERE  showTime > :start  AND showTime < :end");
             query.setParameter("start", date.atStartOfDay());
@@ -25,10 +23,6 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
             return query.getResultList();
         } catch (Exception ex) {
             throw new DataProcessingException("Failed to get available sessions", ex);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
         }
     }
 
