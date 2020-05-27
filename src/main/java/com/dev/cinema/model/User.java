@@ -15,9 +15,7 @@ public class User {
     private Long id;
     @Column(name = "email", unique = true)
     private String email;
-    //    @Column(name= "password")
     private String password;
-    //    @Column(name = "salt")
     private byte[] salt;
 
     public User() {
