@@ -13,21 +13,9 @@ import org.hibernate.query.Query;
 
 @Dao
 public class MovieSessionDaoImpl implements MovieSessionDao {
-    @Override
-    public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query query = session.createQuery(
-                    "FROM MovieSession WHERE  showTime > :start  AND showTime < :end");
-            query.setParameter("start", date.atStartOfDay());
-            query.setParameter("end", date.atStartOfDay().plusDays(1).minusSeconds(1));
-            return query.getResultList();
-        } catch (Exception ex) {
-            throw new DataProcessingException("Failed to get available sessions", ex);
-        }
-    }
 
     @Override
-    public MovieSession add(MovieSession movieSession) {
+    public MovieSession create(MovieSession movieSession) {
         Session session = null;
         Transaction transaction = null;
         try {
@@ -45,6 +33,19 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
             if (session != null) {
                 session.close();
             }
+        }
+    }
+
+    @Override
+    public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query query = session.createQuery(
+                    "FROM MovieSession WHERE  showTime > :start  AND showTime < :end");
+            query.setParameter("start", date.atStartOfDay());
+            query.setParameter("end", date.atStartOfDay().plusDays(1).minusSeconds(1));
+            return query.getResultList();
+        } catch (Exception ex) {
+            throw new DataProcessingException("Failed to get available sessions", ex);
         }
     }
 }

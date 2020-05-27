@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface CinemaHallDao {
 
-    CinemaHall add(CinemaHall cinemaHall);
+    CinemaHall create(CinemaHall cinemaHall);
 
     List<CinemaHall> getALl();
 }

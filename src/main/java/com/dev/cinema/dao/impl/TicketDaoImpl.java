@@ -11,7 +11,7 @@ import org.hibernate.Transaction;
 @Dao
 public class TicketDaoImpl implements TicketDao {
     @Override
-    public Ticket add(Ticket ticket) {
+    public Ticket create(Ticket ticket) {
         Session session = null;
         Transaction transaction = null;
         try {

@@ -31,9 +31,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         user.setEmail(email);
         user.setSalt(salt);
         user.setPassword(HashUtil.hashPassword(password, salt));
-        User userFromDB = userService.add(user);
+        User userFromDB = userService.create(user);
         shoppingCartService.registerNewShoppingCart(userFromDB);
         return userFromDB;
-
     }
 }
