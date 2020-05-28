@@ -5,10 +5,10 @@ import com.dev.cinema.dao.interfaces.ShoppingCartDao;
 import com.dev.cinema.lib.Inject;
 import com.dev.cinema.lib.Service;
 import com.dev.cinema.model.Order;
-import com.dev.cinema.model.ShoppingCart;
 import com.dev.cinema.model.Ticket;
 import com.dev.cinema.model.User;
 import com.dev.cinema.service.interfaces.OrderService;
+import com.dev.cinema.service.interfaces.ShoppingCartService;
 import java.util.List;
 
 @Service
@@ -17,14 +17,13 @@ public class OrderServiceImpl implements OrderService {
     private OrderDao orderDao;
     @Inject
     private ShoppingCartDao shoppingCartDao;
+    @Inject
+    private ShoppingCartService shoppingCartService;
 
     @Override
     public Order create(List<Ticket> tickets, User user) {
-        Order order = new Order(tickets, user);
-        ShoppingCart shoppingCart = shoppingCartDao.getByUser(user);
-        order = orderDao.create(order);
-        shoppingCart.getTickets().clear();
-        shoppingCartDao.update(shoppingCart);
+        Order order = orderDao.create(new Order(tickets, user));
+        shoppingCartService.clear(shoppingCartDao.getByUser(user));
         return order;
     }
 

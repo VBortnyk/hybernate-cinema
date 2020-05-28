@@ -6,6 +6,7 @@ import com.dev.cinema.lib.Dao;
 import com.dev.cinema.model.MovieSession;
 import com.dev.cinema.util.HibernateUtil;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -42,7 +43,7 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
             Query query = session.createQuery(
                     "FROM MovieSession WHERE  showTime > :start  AND showTime < :end");
             query.setParameter("start", date.atStartOfDay());
-            query.setParameter("end", date.atStartOfDay().plusDays(1).minusSeconds(1));
+            query.setParameter("end", date.atTime(LocalTime.MAX));
             return query.getResultList();
         } catch (Exception ex) {
             throw new DataProcessingException("Failed to get available sessions", ex);
