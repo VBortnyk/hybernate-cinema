@@ -9,12 +9,11 @@ import com.dev.cinema.service.interfaces.UserService;
 @Service
 public class UserServiceImpl implements UserService {
     @Inject
-
     private UserDao userDao;
 
     @Override
-    public User add(User user) {
-        return userDao.add(user);
+    public User create(User user) {
+        return userDao.create(user);
 
     }
 

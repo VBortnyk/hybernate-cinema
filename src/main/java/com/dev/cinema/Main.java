@@ -12,6 +12,7 @@ import com.dev.cinema.secutity.AuthenticationService;
 import com.dev.cinema.service.interfaces.CinemaHallService;
 import com.dev.cinema.service.interfaces.MovieService;
 import com.dev.cinema.service.interfaces.MovieSessionService;
+import com.dev.cinema.service.interfaces.OrderService;
 import com.dev.cinema.service.interfaces.ShoppingCartService;
 import com.dev.cinema.service.interfaces.UserService;
 import java.time.LocalDate;
@@ -34,26 +35,32 @@ public class Main {
             = (MovieService) injector.getInstance(MovieService.class);
     private static CinemaHallService cinemaHallService
             = (CinemaHallService) injector.getInstance(CinemaHallService.class);
+    private static OrderService orderService
+            = (OrderService) injector.getInstance(OrderService.class);
 
     public static void main(String[] args) {
         Movie matrix = new Movie();
         matrix.setTitle("Matrix");
-        movieService.add(matrix);
+        movieService.create(matrix);
 
         CinemaHall cinemaHall1 = new CinemaHall();
         cinemaHall1.setCapacity(100);
-        cinemaHallService.add(cinemaHall1);
+        cinemaHallService.create(cinemaHall1);
 
         MovieSession testSession = new MovieSession();
         testSession.setShowTime(LocalDateTime
                 .of(LocalDate.of(2020, 05, 27), LocalTime.of(10, 30)));
         testSession.setCinemaHall(cinemaHall1);
-        movieSessionService.add(testSession);
+        movieSessionService.create(testSession);
 
         User testUser = authenticationService.register("mail@gmail.com", "password");
 
         ShoppingCart shoppingCart = shoppingCartService.getByUser(testUser);
         shoppingCartService.addSession(testSession, testUser);
+        shoppingCartService.addSession(testSession, testUser);
+
+        ShoppingCart shoppingCart1 = shoppingCartService.getByUser(testUser);
+        orderService.create(shoppingCart1.getTickets(), testUser);
 
     }
 

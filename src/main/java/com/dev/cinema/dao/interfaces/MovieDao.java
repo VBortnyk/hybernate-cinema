@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface MovieDao {
 
-    Movie add(Movie movie);
+    Movie create(Movie movie);
 
     List<Movie> getALl();
 }

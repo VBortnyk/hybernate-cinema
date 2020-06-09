@@ -13,7 +13,7 @@ import org.hibernate.query.Query;
 @Dao
 public class CinemaHallDaoImpl implements CinemaHallDao {
     @Override
-    public CinemaHall add(CinemaHall cinemaHall) {
+    public CinemaHall create(CinemaHall cinemaHall) {
         Session session = null;
         Transaction transaction = null;
         try {
