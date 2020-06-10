@@ -45,13 +45,7 @@ public class AppConfig {
         Properties props = new Properties();
         props.put("hibernate.show_sql", "create-drop");
         props.put("hibernate.hbm2ddl.auto", "create-drop");
-        factoryBean.setHibernateProperties(props);
-        factoryBean.setAnnotatedClasses(CinemaHall.class);
-        factoryBean.setAnnotatedClasses(MovieSession.class);
-        factoryBean.setAnnotatedClasses(Order.class);
-        factoryBean.setAnnotatedClasses(ShoppingCart.class);
-        factoryBean.setAnnotatedClasses(Ticket.class);
-        factoryBean.setAnnotatedClasses(User.class);
+        factoryBean.setAnnotatedPackages("com.dev.cinema.model");
         return factoryBean;
     }
 }
