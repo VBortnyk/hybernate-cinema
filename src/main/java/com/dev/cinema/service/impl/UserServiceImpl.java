@@ -1,16 +1,19 @@
 package com.dev.cinema.service.impl;
 
-import com.dev.cinema.dao.interfaces.UserDao;
+import com.dev.cinema.dao.UserDao;
 import com.dev.cinema.model.User;
-import com.dev.cinema.service.interfaces.UserService;
+import com.dev.cinema.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
+    private UserDao userDao;
 
     @Autowired
-    private UserDao userDao;
+    public UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     @Override
     public User create(User user) {
@@ -19,8 +22,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByEmail(String email) {
+    public User get(Long userId) {
+        return userDao.get(userId).get();
+    }
 
-        return userDao.findByEmail(email).get();
+    @Override
+    public User getByEmail(String email) {
+        return userDao.getByEmail(email).get();
+    }
+
+    @Override
+    public User findById(Long userId) {
+        return userDao.findById(userId).get();
     }
 }

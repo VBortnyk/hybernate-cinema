@@ -1,6 +1,6 @@
 package com.dev.cinema.dao.impl;
 
-import com.dev.cinema.dao.interfaces.CinemaHallDao;
+import com.dev.cinema.dao.CinemaHallDao;
 import com.dev.cinema.exceptions.DataProcessingException;
 import com.dev.cinema.model.CinemaHall;
 import java.util.List;
@@ -36,6 +36,19 @@ public class CinemaHallDaoImpl implements CinemaHallDao {
             if (session != null) {
                 session.close();
             }
+        }
+    }
+
+    @Override
+    public CinemaHall getById(Long hallId) {
+        try {
+            Session session = sessionFactory.openSession();
+            Query<CinemaHall> query = session.createQuery(
+                    "FROM CinemaHall WHERE id = :hallId", CinemaHall.class);
+            query.setParameter("id", hallId);
+            return query.getSingleResult();
+        } catch (Exception e) {
+            throw new DataProcessingException("Failed to get cinema-hall by id: " + hallId, e);
         }
     }
 

@@ -36,10 +36,11 @@ public class AppConfig {
     public LocalSessionFactoryBean getSessionFactory() {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
         factoryBean.setDataSource(getDataSource());
-        Properties props = new Properties();
-        props.put("hibernate.show_sql", "create-drop");
-        props.put("hibernate.hbm2ddl.auto", "create-drop");
-        factoryBean.setAnnotatedPackages("com.dev.cinema.model");
+        Properties properties = new Properties();
+        properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+        properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+        factoryBean.setHibernateProperties(properties);
+        factoryBean.setPackagesToScan("com.dev.cinema.model");
         return factoryBean;
     }
 }

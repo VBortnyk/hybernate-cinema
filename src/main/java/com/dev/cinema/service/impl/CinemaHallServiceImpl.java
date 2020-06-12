@@ -1,8 +1,8 @@
 package com.dev.cinema.service.impl;
 
-import com.dev.cinema.dao.interfaces.CinemaHallDao;
+import com.dev.cinema.dao.CinemaHallDao;
 import com.dev.cinema.model.CinemaHall;
-import com.dev.cinema.service.interfaces.CinemaHallService;
+import com.dev.cinema.service.CinemaHallService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +16,11 @@ public class CinemaHallServiceImpl implements CinemaHallService {
     @Override
     public CinemaHall create(CinemaHall cinemaHall) {
         return cinemaHallDao.create(cinemaHall);
+    }
+
+    @Override
+    public CinemaHall getById(Long hallId) {
+        return cinemaHallDao.getById(hallId);
     }
 
     @Override

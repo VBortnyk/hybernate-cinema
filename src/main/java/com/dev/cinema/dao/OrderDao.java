@@ -1,4 +1,4 @@
-package com.dev.cinema.dao.interfaces;
+package com.dev.cinema.dao;
 
 import com.dev.cinema.model.Order;
 import com.dev.cinema.model.User;

@@ -2,8 +2,8 @@ package com.dev.cinema.secutity;
 
 import com.dev.cinema.exceptions.AuthenticationException;
 import com.dev.cinema.model.User;
-import com.dev.cinema.service.interfaces.ShoppingCartService;
-import com.dev.cinema.service.interfaces.UserService;
+import com.dev.cinema.service.ShoppingCartService;
+import com.dev.cinema.service.UserService;
 import com.dev.cinema.util.HashUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public User login(String email, String password) throws AuthenticationException {
-        User user = userService.findByEmail(email);
+        User user = userService.getByEmail(email);
         if (user.getPassword().equals(HashUtil.hashPassword(password, user.getSalt()))) {
             return user;
         }

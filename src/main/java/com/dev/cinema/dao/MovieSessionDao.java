@@ -1,12 +1,14 @@
-package com.dev.cinema.service.interfaces;
+package com.dev.cinema.dao;
 
 import com.dev.cinema.model.MovieSession;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface MovieSessionService {
+public interface MovieSessionDao {
 
-    MovieSession create(MovieSession movieSession);
+    MovieSession create(MovieSession session);
 
     List<MovieSession> findAvailableSessions(Long movieId, LocalDate date);
+
+    MovieSession findById(Long sessionId);
 }
