@@ -1,6 +1,6 @@
 package com.dev.cinema.dao.impl;
 
-import com.dev.cinema.dao.interfaces.UserDao;
+import com.dev.cinema.dao.UserDao;
 import com.dev.cinema.exceptions.DataProcessingException;
 import com.dev.cinema.model.User;
 import java.util.Optional;
@@ -40,14 +40,28 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
-        try (Session session = sessionFactory.openSession()) {
+    public Optional<User> getByEmail(String email) {
+        try {
+            Session session = sessionFactory.openSession();
             String selectQuery = "FROM User WHERE email = :email";
             Query<User> query = session.createQuery(selectQuery, User.class);
             query.setParameter("email", email);
             return Optional.of((User) query.getSingleResult());
         } catch (Exception e) {
             throw new DataProcessingException("Failed to find user by email: " + email, e);
+        }
+    }
+
+    @Override
+    public Optional<User> findById(Long userId) {
+        try {
+            Session session = sessionFactory.openSession();
+            String selectQuery = "FROM User WHERE id = :userId";
+            Query<User> query = session.createQuery(selectQuery, User.class);
+            query.setParameter("id", userId);
+            return Optional.of((User) query.getSingleResult());
+        } catch (Exception e) {
+            throw new DataProcessingException("Failed to find user by email: " + userId, e);
         }
     }
 }

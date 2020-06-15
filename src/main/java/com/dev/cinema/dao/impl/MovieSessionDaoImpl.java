@@ -1,6 +1,6 @@
 package com.dev.cinema.dao.impl;
 
-import com.dev.cinema.dao.interfaces.MovieSessionDao;
+import com.dev.cinema.dao.MovieSessionDao;
 import com.dev.cinema.exceptions.DataProcessingException;
 import com.dev.cinema.model.MovieSession;
 import java.time.LocalDate;
@@ -52,5 +52,16 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
         } catch (Exception ex) {
             throw new DataProcessingException("Failed to get available sessions", ex);
         }
+    }
+
+    @Override
+    public MovieSession findById(Long sessionId) {
+        try {
+            Session session = sessionFactory.openSession();
+            return session.get(MovieSession.class, sessionId);
+        } catch (Exception e) {
+            throw new DataProcessingException("Failed to get movie by title: " + sessionId, e);
+        }
+
     }
 }

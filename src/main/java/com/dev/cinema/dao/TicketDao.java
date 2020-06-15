@@ -1,4 +1,4 @@
-package com.dev.cinema.dao.interfaces;
+package com.dev.cinema.dao;
 
 import com.dev.cinema.model.Ticket;
 

@@ -1,4 +1,4 @@
-package com.dev.cinema.service.interfaces;
+package com.dev.cinema.service;
 
 import com.dev.cinema.model.Order;
 import com.dev.cinema.model.Ticket;
