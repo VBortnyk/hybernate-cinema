@@ -1,14 +1,12 @@
 package com.dev.cinema.controllers;
 
-import com.dev.cinema.dao.MovieDao;
 import com.dev.cinema.mapper.MovieMapper;
 import com.dev.cinema.model.Movie;
 import com.dev.cinema.model.dto.MovieRequestDto;
 import com.dev.cinema.model.dto.MovieResponseDto;
+import com.dev.cinema.service.MovieService;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.dev.cinema.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

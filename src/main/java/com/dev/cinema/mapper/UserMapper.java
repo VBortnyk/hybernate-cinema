@@ -1,7 +1,6 @@
 package com.dev.cinema.mapper;
 
 import com.dev.cinema.model.User;
-import com.dev.cinema.model.dto.UserRequestDto;
 import com.dev.cinema.model.dto.UserResponseDto;
 import com.dev.cinema.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
