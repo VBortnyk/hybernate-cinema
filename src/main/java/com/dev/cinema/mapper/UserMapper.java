@@ -18,13 +18,4 @@ public class UserMapper {
         userResponseDto.setEmail(user.getEmail());
         return userResponseDto;
     }
-
-    public User convertDtoToUser(UserRequestDto userRequestDto) {
-        User user = new User();
-        String email = userRequestDto.getEmail();
-        Long id = userService.getByEmail(email).getId();
-        user.setId(id);
-        user.setEmail(email);
-        return user;
-    }
 }

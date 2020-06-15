@@ -58,10 +58,7 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
     public MovieSession findById(Long sessionId) {
         try {
             Session session = sessionFactory.openSession();
-            Query<MovieSession> query = session.createQuery(
-                    "FROM MovieSession WHERE id = :sessionId", MovieSession.class);
-            query.setParameter("id", sessionId);
-            return query.getSingleResult();
+            return session.get(MovieSession.class, sessionId);
         } catch (Exception e) {
             throw new DataProcessingException("Failed to get movie by title: " + sessionId, e);
         }

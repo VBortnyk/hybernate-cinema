@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/users")
 public class AuthenticationController {
-    private AuthenticationService authenticationService;
-    private UserMapper userMapper;
-    private UserService userService;
+    private final AuthenticationService authenticationService;
+    private final UserMapper userMapper;
+    private final UserService userService;
 
     @Autowired
     public AuthenticationController(AuthenticationService authenticationService,
@@ -28,9 +28,8 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public UserResponseDto register(@RequestBody UserRegistrationDto userRegistrationDto) {
-        User user = userService.getByEmail(userRegistrationDto.getEmail());
-        user = authenticationService.register(user.getEmail(), user.getPassword());
-        return userMapper.convertToResponseDto(user);
+    public void register(@RequestBody UserRegistrationDto userRegistrationDto) {
+        authenticationService.register(userRegistrationDto.getEmail(),
+                userRegistrationDto.getPassword());
     }
 }

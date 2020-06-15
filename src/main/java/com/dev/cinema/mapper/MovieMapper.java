@@ -25,8 +25,6 @@ public class MovieMapper {
 
     public Movie convertDtoToMovie(MovieRequestDto movieRequestDto) {
         Movie movie = new Movie();
-        Long id = movieService.getByTitle(movieRequestDto.getTitle()).getId();
-        movie.setId(id);
         movie.setTitle(movieRequestDto.getTitle());
         movie.setDescription(movieRequestDto.getDescription());
         return movie;
