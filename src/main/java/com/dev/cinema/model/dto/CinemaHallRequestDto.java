@@ -1,7 +1,13 @@
 package com.dev.cinema.model.dto;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class CinemaHallRequestDto {
+    @NotNull(message = "Capacity can not be null")
     private int capacity;
+    @NotNull(message = "Description can not be null")
+    @Size(min = 10, max = 200, message = "Description must contain 10 - 200 symbols")
     private String description;
 
     public int getCapacity() {
