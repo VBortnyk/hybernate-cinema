@@ -5,16 +5,17 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import javax.validation.Constraint;
+import javax.validation.Payload;
 
 @Constraint(validatedBy = PasswordMatcher.class)
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MatchPasswords {
 
-    String message() default "Fields values don't match!";
+    String message() default "Passwords don't match!";
 
-    String field();
+    Class<?>[] groups() default {};
 
-    String fieldMatch();
+    Class<? extends Payload>[] payload() default {};
 }
 

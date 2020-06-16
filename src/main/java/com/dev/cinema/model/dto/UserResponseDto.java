@@ -1,9 +1,9 @@
 package com.dev.cinema.model.dto;
 
-import com.dev.cinema.annotations.Email;
+import com.dev.cinema.annotations.EmailValidation;
 
 public class UserResponseDto {
-    @Email
+    @EmailValidation
     private String email;
 
     public String getEmail() {
