@@ -5,12 +5,12 @@ import com.dev.cinema.annotations.MatchPasswords;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@MatchPasswords(field = "password", fieldMatch = "repeatPassword")
+@MatchPasswords
 public class UserRegistrationDto {
     @EmailValidation
     @NotNull(message = "Email can not be null")
     private String email;
-    @NotNull()
+    @NotNull
     @Size(min = 8, message = "Password should contain at least 10 symbols")
     private String password;
     @NotNull
