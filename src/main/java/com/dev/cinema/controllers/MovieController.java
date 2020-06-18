@@ -32,7 +32,7 @@ public class MovieController {
         movieService.create(movieMapper.convertDtoToMovie(movieRequestDto));
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<MovieResponseDto> getAll() {
         List<Movie> movieList = movieService.getALl();
         return movieList.stream()

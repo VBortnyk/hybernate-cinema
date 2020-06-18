@@ -1,6 +1,8 @@
 package com.dev.cinema.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -20,7 +22,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .anyRequest().authenticated()
+                .antMatchers(HttpMethod.POST,"/cinema-halls/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/cinema-halls/**").authenticated()
+                .antMatchers(HttpMethod.POST,"/movie-sessions/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/movie-sessions/**").authenticated()
+                .antMatchers("/orders/**").authenticated()
+                .antMatchers("/shopping-carts/**").authenticated()
+                .antMatchers(HttpMethod.GET,"/users/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/movies/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/movies/**").authenticated()
+                .antMatchers(HttpMethod.GET,"/").permitAll()
+                .antMatchers(HttpMethod.POST,"/register").permitAll()
                 .and()
                 .formLogin()
                 .permitAll()
@@ -30,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable();
     }
 
+    @Bean
     public PasswordEncoder getEncoder() {
         return new BCryptPasswordEncoder();
     }
