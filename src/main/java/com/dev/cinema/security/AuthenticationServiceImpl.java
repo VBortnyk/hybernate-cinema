@@ -7,19 +7,14 @@ import com.dev.cinema.service.RoleService;
 import com.dev.cinema.service.ShoppingCartService;
 import com.dev.cinema.service.UserService;
 import java.util.Set;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
-    @Autowired
     private final ShoppingCartService shoppingCartService;
-    @Autowired
     private final UserService userService;
-    @Autowired
     private final RoleService roleService;
-    @Autowired
     private final PasswordEncoder passwordEncoder;
 
     public AuthenticationServiceImpl(ShoppingCartService shoppingCartService,
