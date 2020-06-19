@@ -1,4 +1,4 @@
-package com.dev.cinema.secutity;
+package com.dev.cinema.security;
 
 import com.dev.cinema.exceptions.AuthenticationException;
 import com.dev.cinema.model.User;

@@ -2,7 +2,7 @@ package com.dev.cinema.controllers;
 
 import com.dev.cinema.mapper.UserMapper;
 import com.dev.cinema.model.dto.UserRegistrationDto;
-import com.dev.cinema.secutity.AuthenticationService;
+import com.dev.cinema.security.AuthenticationService;
 import com.dev.cinema.service.UserService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

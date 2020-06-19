@@ -33,7 +33,7 @@ public class CinemaHallController {
         cinemaHallService.create(cinemaHallMapper.convertDtoToCinemaHall(dto));
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<CinemaHallResponseDto> getAll() {
         List<CinemaHall> cinemaHalls = cinemaHallService.getAll();
         return cinemaHalls
