@@ -28,6 +28,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         String[] roles = user.getRoles().stream()
                 .map(role -> role.getRoleName().name())
                 .toArray(String[]::new);
+        userBuilder.roles(roles);
         return userBuilder.build();
     }
 }

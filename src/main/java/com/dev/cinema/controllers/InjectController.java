@@ -34,13 +34,13 @@ public class InjectController {
         User user = new User();
         user.setEmail("user@gmail.com");
         user.setPassword("password");
-        user.setRoles(Set.of(Role.of("USER")));
+        user.setRoles(Set.of(userRole));
         userService.create(user);
 
         User admin = new User();
         admin.setEmail("admin@gmail.com");
         admin.setPassword("password");
-        admin.setRoles(Set.of(Role.of("ADMIN")));
+        admin.setRoles(Set.of(adminRole));
         userService.create(admin);
     }
 }
